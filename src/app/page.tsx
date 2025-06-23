@@ -1,95 +1,160 @@
-import Image from "next/image";
+"use client";
 import styles from "./page.module.css";
-
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  createTheme,
+  Grid,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
+import { useEffect, useState } from "react";
+export const tristanDarkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#09ebec",
+      dark: "#1052f5",
+      contrastText: "rgba(10,11,26,0.87)",
+    },
+    secondary: {
+      main: "#f50057",
+    },
+  },
+});
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [releases, setReleases] = useState([]);
+  useEffect(() => {
+    const get = async () => {
+      const res = await fetch(
+        "https://api.github.com/repos/Deadly-Phantom/Mario-Game"
+      );
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      const releases_with_pre = await res.json();
+      // console.log(releases_with_pre)
+      const releases = releases_with_pre;
+
+      setReleases(releases);
+    };
+    get();
+  }, []);
+  return (
+    <ThemeProvider theme={tristanDarkTheme} noSsr>
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <Grid container spacing={5}>
+            <Grid>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image="/mario.png"
+                  title="Mario Game"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Mario Game
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    Welcome to the first release of the Mario Game! This is a
+                    simple, fun platformer inspired by classic Mario gameplay,
+                    built using Python and Pygame. Run, jump, and dodge Goombas
+                    as you explore a side-scrolling world. Collect coins and
+                    power-ups to boost your score and abilities.
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/Deadly-Phantom/Mario-Game/releases"
+                      )
+                    }
+                    size="small"
+                  >
+                    Downloads
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image="/snake.png"
+                  title="Mario Game"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Snake Game
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    Welcome to the first release of the Cyber Rainbow Snake
+                    Game! This is a modern, neon-themed twist on the classic
+                    Snake, built with Python and Pygame. Glide through a glowing
+                    grid, collect animated fruits, dodge obstacles, and chase
+                    your high score in a cyberpunk world.
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/Deadly-Phantom/Snake-Game/releases"
+                      )
+                    }
+                    size="small"
+                  >
+                    Downloads
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image="/croatia.jpeg"
+                  title="Mario Game"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Croatia Trip 2025
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    Experience the beauty of Croatia in 2025! Join us for an
+                    unforgettable adventure exploring stunning coastlines,
+                    historic cities, and vibrant culture. From the crystal-clear
+                    Adriatic Sea to charming old towns, this trip promises
+                    breathtaking sights and lasting memories.
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://deadly-phantom.github.io/holiday-react/"
+                      )
+                    }
+                    size="small"
+                  >
+                    View
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Grid>
+          <div className={styles.ctas}>
+            {/* <Card sx={{ color: "white", backgroundColor: "black" }}>
+            <pre>
+              <code>{JSON.stringify(releases, null, 2)}</code>
+            </pre>
+          </Card> */}
+          </div>
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
