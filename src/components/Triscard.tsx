@@ -30,8 +30,8 @@ export default function Triscard({ data }: { data: ITriscard }) {
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {data.description}
           </Typography>
-          {data.languages?.map((language) => (
-            <Chip sx={{ marginTop: 2 }} label={language} />
+          {data.languages?.map((language, i) => (
+            <Chip key={i} sx={{ marginTop: 2 }} label={language} />
           ))}
         </CardContent>
         <CardActions>
