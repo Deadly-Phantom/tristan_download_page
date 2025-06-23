@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 // import { useEffect, useState } from "react";
-export const tristanDarkTheme = createTheme({
+const tristanDarkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
