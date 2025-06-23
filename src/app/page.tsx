@@ -11,7 +11,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 export const tristanDarkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -26,21 +26,21 @@ export const tristanDarkTheme = createTheme({
   },
 });
 export default function Home() {
-  const [releases, setReleases] = useState([]);
-  useEffect(() => {
-    const get = async () => {
-      const res = await fetch(
-        "https://api.github.com/repos/Deadly-Phantom/Mario-Game"
-      );
+  // const [releases, setReleases] = useState([]);
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const res = await fetch(
+  //       "https://api.github.com/repos/Deadly-Phantom/Mario-Game"
+  //     );
 
-      const releases_with_pre = await res.json();
-      // console.log(releases_with_pre)
-      const releases = releases_with_pre;
+  //     const releases_with_pre = await res.json();
+  //     // console.log(releases_with_pre)
+  //     const releases = releases_with_pre;
 
-      setReleases(releases);
-    };
-    get();
-  }, []);
+  //     setReleases(releases);
+  //   };
+  //   get();
+  // }, []);
   return (
     <ThemeProvider theme={tristanDarkTheme} noSsr>
       <div className={styles.page}>
