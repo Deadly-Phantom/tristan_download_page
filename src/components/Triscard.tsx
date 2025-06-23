@@ -6,6 +6,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Chip,
   Grid,
   Typography,
 } from "@mui/material";
@@ -17,18 +18,21 @@ export default function Triscard({ data }: { data: ITriscard }) {
         <CardMedia
           sx={{
             height: 140,
-            backgroundSize: "contain",
+            backgroundSize: data.backgroundSize || "contain",
           }}
           image={data.image}
           title={data.title}
         />
-        <CardContent>
+        <CardContent sx={{ paddingBottom: 0 }}>
           <Typography gutterBottom variant="h5" component="div">
             {data.title}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {data.description}
           </Typography>
+          {data.languages?.map((language) => (
+            <Chip sx={{ marginTop: 2 }} label={language} />
+          ))}
         </CardContent>
         <CardActions>
           <Button onClick={() => window.open(data.link)} size="small">
